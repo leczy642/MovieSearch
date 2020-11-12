@@ -1,0 +1,40 @@
+<h1>Movie search engine</h1>
+<!--use a forEach loop to loop through all the data in the array-->
+<!--we are accessing all the data in the element by using data[Search]-->
+<!--data comes from our get route and Search is the array from our API-->
+<!--all the data comes from here http://www.omdbapi.com/?s=guardians+of+the+galaxy&apikey=thewdb-->
+
+<form action="/results" method="GET">
+    <input type="text" placeholder="Enter movie name" name="search">
+    <input type="submit">
+</form>
+
+<p>
+    <%= data['Search'].length %> results found</p>
+<a href="/">
+    << Back</a>
+        <% data['Search'].forEach(function(movie){ %>
+            <li>
+                <b><%= movie['Title'] %></b><br/>
+                <ul>
+                    <li>
+                        <b>Year :</b>
+                        <%= movie['Year'] %>
+                    </li>
+                    <li>
+                        <b>imdbID :</b>
+                        <%= movie['imdbID'] %>
+                    </li>
+                    <li>
+                        <b>Type :</b>
+                        <%= movie['Type'] %>
+                    </li>
+                    <li>
+                        <b>Poster :</b>
+                        <a href="<%= movie['Poster'] %>" target="_blank">
+                            <%= movie['Poster'] %>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <% }); %>
